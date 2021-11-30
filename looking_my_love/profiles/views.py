@@ -1,9 +1,11 @@
 from .serializers import UsersListSerializer, UsersCreateSerializer
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework.parsers import FormParser, MultiPartParser
+from django_filters.rest_framework import DjangoFilterBackend
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics, status
+from .filters import UserListFilter
 from sys import getsizeof
 from pathlib import Path
 from .models import User
@@ -15,6 +17,8 @@ from PIL import Image
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UsersListSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = UserListFilter
     # permission_classes = [IsAuthenticated]
 
 
@@ -37,7 +41,7 @@ class UserCreateView(generics.CreateAPIView):
             content_type = request.data.get('avatar').content_type
             request.data['avatar'] = InMemoryUploadedFile(
                                         file=img_io,
-                                        field_name="avatar",
+                                        field_name='avatar',
                                         name=name,
                                         content_type=content_type,
                                         size=getsizeof(img_io),
