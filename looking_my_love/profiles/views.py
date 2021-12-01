@@ -5,7 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import generics, status
-from .filters import UserListFilter
+from .filters import UserListFilter, UserListFilterGeo
 from sys import getsizeof
 from pathlib import Path
 from .models import User
@@ -17,7 +17,7 @@ from PIL import Image
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UsersListSerializer
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, UserListFilterGeo)
     filterset_class = UserListFilter
     # permission_classes = [IsAuthenticated]
 

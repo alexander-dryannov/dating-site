@@ -10,6 +10,7 @@ pillow = "*"
 python-dotenv = "*"
 psycopg2 = "*"
 django-filter = "*"
+geopy = "*"
 
 [dev-packages]
 

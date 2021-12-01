@@ -3,13 +3,10 @@
 ## Фильтрация.
 
 - Фильтрация по полу
-
   - /api/list?gender=
-
 - Фильтрация по имени
-
-  - /api/list?fname=
-
+  - /api/list?first_name=
 - Фильтрация по фамилии
-
-  - /api/list?lname=
+  - /api/list?last_name=
+- Фильтрация по дистанции
+  - /api/list?distance=киллометры
