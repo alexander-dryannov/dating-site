@@ -1,23 +1,36 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from django.contrib.auth.hashers import make_password
-from .models import User
+from .models import User, Match
+
+UserModel = get_user_model()
+
+
+class MatchCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Match
+        fields = '__all__'
 
 
 class UsersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'gender', 'avatar')
+        fields = ('id', 'first_name', 'last_name', 'gender', 'avatar')
 
 
-class UsersCreateSerializer(serializers.ModelSerializer):
-    avatar = serializers.ImageField(allow_empty_file=False)
+class UserSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        user = UserModel.objects.create_user(
+            username=validated_data['username'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            email=validated_data['email'],
+            gender=validated_data['gender'],
+            avatar=validated_data['avatar'],
+            password=validated_data['password'],
+        )
+        return user
 
     class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'gender', 'email', 'avatar', 'password',)
-
-    def create(self, validated_data):
-        user = super(UsersCreateSerializer, self).create(validated_data)
-        user.set_password(make_password(validated_data['password']))
-        user.save()
-        return user
+        model = UserModel
+        # Tuple of serialized model fields (see link [2])
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'avatar', 'gender', 'password',)

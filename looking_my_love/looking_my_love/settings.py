@@ -54,6 +54,10 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
 }
 
 MIDDLEWARE = [
@@ -155,3 +159,17 @@ MEDIA_ROOT = 'media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = getenv('EMAIL_HOST')
+
+EMAIL_PORT = getenv('EMAIL_PORT')
+
+EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
+
+EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+
+DEFAULT_FROM_EMAIL = getenv('DEFAULT_FROM_EMAIL')
+
+EMAIL_USE_TLS = True if getenv('EMAIL_USE_TLS') == 'True' else False
+
+EMAIL_USE_SSL = True if getenv('EMAIL_USE_SSL') == 'True' else False

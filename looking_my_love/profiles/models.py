@@ -12,5 +12,16 @@ class User(AbstractUser):
     email = models.EmailField('Электронная почта')
     avatar = models.ImageField('Аватар', upload_to='avatars')
     gender = models.CharField('Пол', max_length=10, choices=GENDER_CHOICES)
-    latitude = models.DecimalField('Широта', max_digits=10, decimal_places=8)
-    longitude = models.DecimalField('Широта', max_digits=10, decimal_places=8)
+    # latitude = models.DecimalField('Широта', max_digits=10, decimal_places=8)
+    # longitude = models.DecimalField('Долгота', max_digits=10, decimal_places=8)
+
+
+class Match(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vote = models.ForeignKey(User, related_name='given_vote', on_delete=models.CASCADE)
+
+    def __str__(self):
+        if self.user.gender == 'мужской':
+            return f"{self.user} понравилась {self.vote}"
+        else:
+            return f"{self.user} понравился {self.vote}"
