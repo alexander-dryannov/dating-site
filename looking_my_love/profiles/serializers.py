@@ -14,7 +14,7 @@ class MatchCreateSerializer(serializers.ModelSerializer):
 class UsersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'gender', 'avatar')
+        fields = ('id', 'first_name', 'last_name', 'gender', 'city', 'avatar')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,11 +26,13 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             gender=validated_data['gender'],
             avatar=validated_data['avatar'],
+            city=validated_data['city'],
+            street=validated_data['street'],
             password=validated_data['password'],
         )
         return user
 
     class Meta:
         model = UserModel
-        # Tuple of serialized model fields (see link [2])
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'avatar', 'gender', 'password',)
+        fields = ('id', 'username', 'first_name', 'last_name', 'email',
+                  'avatar', 'gender', 'city', 'street', 'password',)

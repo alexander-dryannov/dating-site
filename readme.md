@@ -38,5 +38,7 @@
   - /api/list?first_name=
 - Фильтрация по фамилии
   - /api/list?last_name=
+- Фильтрация по городу
+  - /api/list?city=
 - Фильтрация по дистанции
   - /api/list?distance=киллометры

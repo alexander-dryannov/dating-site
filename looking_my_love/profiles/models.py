@@ -12,8 +12,8 @@ class User(AbstractUser):
     email = models.EmailField('Электронная почта')
     avatar = models.ImageField('Аватар', upload_to='avatars')
     gender = models.CharField('Пол', max_length=10, choices=GENDER_CHOICES)
-    # latitude = models.DecimalField('Широта', max_digits=10, decimal_places=8)
-    # longitude = models.DecimalField('Долгота', max_digits=10, decimal_places=8)
+    city = models.CharField('Город', max_length=100)
+    street = models.CharField('Улица', max_length=100)
 
 
 class Match(models.Model):
