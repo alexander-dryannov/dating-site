@@ -12,6 +12,7 @@ psycopg2 = "*"
 django-filter = "*"
 geopy = "*"
 fake-useragent = "*"
+gunicorn = "*"
 
 [dev-packages]
 
