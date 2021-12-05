@@ -5,7 +5,7 @@
 ### Установка зависимостей
 
 ```shell
-sudo apt install supervisor libpq-dev pipenv nginx postgesql
+sudo apt install python3-pip supervisor libpq-dev pipenv nginx postgesql make build-essential
 mkdir -p www/python/apps/
 cd www/python/apps/
 ```
