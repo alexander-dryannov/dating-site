@@ -14,6 +14,8 @@ class User(AbstractUser):
     gender = models.CharField('Пол', max_length=10, choices=GENDER_CHOICES)
     city = models.CharField('Город', max_length=100)
     street = models.CharField('Улица', max_length=100)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
 
 
 class Match(models.Model):

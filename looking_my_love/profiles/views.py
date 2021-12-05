@@ -22,8 +22,8 @@ class UserListView(generics.ListAPIView):
     serializer_class = UsersListSerializer
     filter_backends = (DjangoFilterBackend, UserListFilterGeo)
     filterset_class = UserListFilter
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
+    # permission_classes = [IsAuthenticated]
 
 
 class UserCreateView(generics.CreateAPIView):
