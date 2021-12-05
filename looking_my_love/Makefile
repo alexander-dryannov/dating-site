@@ -5,4 +5,4 @@ run:
 	./manage.py runserver
 
 cp_static:
-	./manage.py collectstatic -l --noinput
+	./manage.py collectstatic --noinput
