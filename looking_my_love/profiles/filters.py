@@ -14,8 +14,6 @@ class UserListFilterGeo(filters.DjangoFilterBackend):
         parameter_distance = request.GET.get('distance')
         if parameter_distance and bool(int(parameter_distance)):
             for user in users:
-                current_user_address = f'{request.user.city}, {request.user.street}'
-                another_user_address = f'{user.city}, {user.street}'
                 distance = handler_distance(
                     (request.user.latitude, request.user.longitude),
                     (user.latitude, user.longitude)
